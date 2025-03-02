@@ -61,7 +61,7 @@ public static class ErrorMessages
         { ErrorCode.MaxLineCountInvalid, "Max line count is not valid" },
         { ErrorCode.PercentageOutOfRange, "Percentage must be between 0 and 100" },
         { ErrorCode.PriceAdjustmentTypeInvalid, "Price adjustment type is not valid" },
-        { ErrorCode.CustomerFieldTypeInvalid, "Customer field type is not valid" },
+        { ErrorCode.FieldTypeInvalid, "Field type is not valid" },
         { ErrorCode.PromotionTypeInvalid, "Promotion type is not valid" },
         { ErrorCode.DiscountTypeInvalid, "Discount type is not valid" },
         { ErrorCode.ProductRuleTypeInvalid, "Product rule type is not valid" },

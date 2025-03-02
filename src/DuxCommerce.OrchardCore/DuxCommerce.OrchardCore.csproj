@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DuxCommerce.StoreBuilder" Version="1.1.0" />
         <PackageReference Include="FSharp.Core" Version="9.0.201" />
         <PackageReference Include="ISO3166" Version="1.0.4"/>
         <PackageReference Include="OrchardCore.Autoroute" Version="2.1.6" />
@@ -17,6 +16,10 @@
         <PackageReference Include="OrchardCore.DisplayManagement" Version="2.1.6" />
         <PackageReference Include="OrchardCore.Email.Abstractions" Version="2.1.6" />
         <PackageReference Include="OrchardCore.Media.Core" Version="2.1.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\DuxCommerce.StoreBuilder\Libraries\DuxCommerce.StoreBuilder\DuxCommerce.StoreBuilder.fsproj" />
     </ItemGroup>
 
 

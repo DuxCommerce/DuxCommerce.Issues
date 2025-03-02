@@ -1,5 +1,4 @@
 using DuxCommerce.OrchardCore.Shared;
-using DuxCommerce.StoreBuilder.Catalog.DataTypes;
 using YesSql.Indexes;
 
 namespace DuxCommerce.OrchardCore.Catalog.MerchantFields;
@@ -17,8 +16,7 @@ public class MerchantFieldListIndexProvider : IndexProvider<MerchantFieldsPart>
         context.For<MerchantFieldsIndex>()
             .Map(x =>
             {
-                var row = (MerchantFieldsRow)x.Row;
-
+                var row = x.Row;
                 return new MerchantFieldsIndex(row.Id, row.ProductId);
             });
     }

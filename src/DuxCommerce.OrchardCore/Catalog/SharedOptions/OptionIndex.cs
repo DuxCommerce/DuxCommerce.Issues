@@ -21,7 +21,7 @@ public class OptionIndexProvider : IndexProvider<OptionPart>
         context.For<OptionIndex>()
             .Map(x =>
             {
-                var optionRow = (OptionRow)x.Row;
+                var optionRow = x.Row;
 
                 return new OptionIndex(optionRow.Id);
             });

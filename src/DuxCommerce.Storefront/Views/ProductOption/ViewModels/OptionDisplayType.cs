@@ -5,24 +5,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DuxCommerce.Storefront.Views.ProductOption.ViewModels;
 
-public class OptionDisplayType
+public static class OptionDisplayType
 {
     public static IEnumerable<SelectListItem> GetAll()
     {
         dynamic dropDownList = new ExpandoObject();
 
-        dropDownList.Name = "Drop Down List";
+        dropDownList.Name = "Dropdown List";
         dropDownList.Type = nameof(DisplayType.DropDownList);
 
-        dynamic radioButtonGroup = new ExpandoObject();
+        dynamic radioGroup = new ExpandoObject();
 
-        radioButtonGroup.Name = "Radio Button Group";
-        radioButtonGroup.Type = nameof(DisplayType.RadioButtonGroup);
+        radioGroup.Name = "Radio Group";
+        radioGroup.Type = nameof(DisplayType.RadioGroup);
 
         return new List<SelectListItem>
         {
             new SelectListItem(dropDownList.Name, dropDownList.Type),
-            new SelectListItem(radioButtonGroup.Name, radioButtonGroup.Type)
+            new SelectListItem(radioGroup.Name, radioGroup.Type)
         };
     }
 }

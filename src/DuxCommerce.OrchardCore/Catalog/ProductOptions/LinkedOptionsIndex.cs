@@ -1,12 +1,12 @@
 using DuxCommerce.OrchardCore.Shared;
 using YesSql.Indexes;
 
-namespace DuxCommerce.OrchardCore.Catalog.SharedOptions;
+namespace DuxCommerce.OrchardCore.Catalog.ProductOptions;
 
-public class ProductOptionsIndex(string rowId, string productId, string optionId) : DuxIndex
+public class LinkedOptionsIndex(string rowId, string productId, string optionId) : DuxIndex
 {
     // Note: required by QueryIndex
-    public ProductOptionsIndex() : this(string.Empty, string.Empty, string.Empty)
+    public LinkedOptionsIndex() : this(string.Empty, string.Empty, string.Empty)
     {
     }
 
@@ -15,11 +15,11 @@ public class ProductOptionsIndex(string rowId, string productId, string optionId
     public string OptionId { get; set; } = optionId;
 }
 
-public class ProductOptionIndexProvider : IndexProvider<ProductOptionsPart>
+public class LinkedOptionsIndexProvider : IndexProvider<ProductOptionsPart>
 {
     public override void Describe(DescribeContext<ProductOptionsPart> context)
     {
-        context.For<ProductOptionsIndex>()
+        context.For<LinkedOptionsIndex>()
             .Map(x =>
             {
                 var row = x.Row;
@@ -27,7 +27,7 @@ public class ProductOptionIndexProvider : IndexProvider<ProductOptionsPart>
 
                 return options
                     .Select(option => option.OptionId)
-                    .Select(optionId => new ProductOptionsIndex(row.Id, row.ProductId, optionId));
+                    .Select(optionId => new LinkedOptionsIndex(row.Id, row.ProductId, optionId));
             });
     }
 }

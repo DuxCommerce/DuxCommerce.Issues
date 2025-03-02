@@ -5,7 +5,7 @@ using DuxCommerce.StoreBuilder.Catalog.Dto;
 using YesSql;
 using IIdGenerator = OrchardCore.Entities.IIdGenerator;
 
-namespace DuxCommerce.OrchardCore.Catalog.SharedOptions;
+namespace DuxCommerce.OrchardCore.Catalog.ProductOptions;
 
 public class ProductOptionsStore(ISession session, IIdGenerator generator)
     : PartStore(session, generator), IProductOptionsStore
@@ -42,14 +42,14 @@ public class ProductOptionsStore(ISession session, IIdGenerator generator)
     public async Task<int> GetLinkedProductCount(string optionId)
     {
         return await Session
-            .QueryIndex<ProductOptionsIndex>(index => index.OptionId == optionId)
+            .QueryIndex<LinkedOptionsIndex>(index => index.OptionId == optionId)
             .CountAsync();
     }
 
     public async Task<IEnumerable<string>> GetLinkedProductIds(string optionId)
     {
         var indexes = await Session
-            .QueryIndex<ProductOptionsIndex>(index => index.OptionId == optionId)
+            .QueryIndex<LinkedOptionsIndex>(index => index.OptionId == optionId)
             .ListAsync();
 
         return indexes.Select(x => x.ProductId);

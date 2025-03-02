@@ -3,6 +3,7 @@ using DuxCommerce.OrchardCore.Catalog.Categories;
 using DuxCommerce.OrchardCore.Catalog.CustomerFields;
 using DuxCommerce.OrchardCore.Catalog.Inventory;
 using DuxCommerce.OrchardCore.Catalog.MerchantFields;
+using DuxCommerce.OrchardCore.Catalog.ProductOptions;
 using DuxCommerce.OrchardCore.Catalog.Products;
 using DuxCommerce.OrchardCore.Catalog.SharedOptions;
 using DuxCommerce.OrchardCore.Checkout;
@@ -155,7 +156,8 @@ public static class DependencyRegister
         services.AddSingleton<IIndexProvider, ProductIndexProvider>();
         services.AddSingleton<IIndexProvider, FeaturedProductIndexProvider>();
         services.AddSingleton<IIndexProvider, OptionIndexProvider>();
-        services.AddSingleton<IIndexProvider, ProductOptionIndexProvider>();
+        services.AddSingleton<IIndexProvider, ProductOptionsIndexProvider>();
+        services.AddSingleton<IIndexProvider, LinkedOptionsIndexProvider>();
         services.AddSingleton<IIndexProvider, ProductCategoryIndexProvider>();
         services.AddSingleton<IIndexProvider, ProductChoiceIndexProvider>();
         services.AddSingleton<IIndexProvider, InventoryEventIndexProvider>();
@@ -167,6 +169,7 @@ public static class DependencyRegister
         services.AddScoped<IDataMigration, ProductMigrations>();
         services.AddScoped<IDataMigration, OptionMigrations>();
         services.AddScoped<IDataMigration, ProductOptionsMigrations>();
+        services.AddScoped<IDataMigration, LinkedOptionsMigrations>();
         services.AddScoped<IDataMigration, InventoryEventMigrations>();
         services.AddScoped<IDataMigration, BulkDiscountMigrations>();
         services.AddScoped<IDataMigration, CustomerFieldsMigrations>();
