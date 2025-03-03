@@ -13,6 +13,7 @@ public class ProductIndex(
     string sku,
     bool stockEnabled,
     bool hasOptions,
+    bool hasCustomerFields,
     bool isVisible,
     string parentId)
     : DuxIndex, IParent
@@ -24,6 +25,7 @@ public class ProductIndex(
     public string Sku { get; set; } = sku;
     public bool StockEnabled { get; set; } = stockEnabled;
     public bool HasOptions { get; set; } = hasOptions;
+    public bool HasCustomerFields { get; set; } = hasCustomerFields;
     public bool IsVisible { get; set; } = isVisible;
     public string ParentId { get; set; } = parentId;
 }
@@ -51,6 +53,7 @@ public class ProductIndexProvider : IndexProvider<ContentItem>
                     row.Sku,
                     row.StockEnabled,
                     row.HasOptions,
+                    row.HasCustomerFields,
                     ProductCore.isVisible(row),
                     row.ParentId);
             });

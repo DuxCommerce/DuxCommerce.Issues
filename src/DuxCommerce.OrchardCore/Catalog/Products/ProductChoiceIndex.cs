@@ -36,7 +36,7 @@ public class ProductChoiceIndexProvider : IndexProvider<ContentItem>
                 if (row == null)
                     return null;
 
-                var choiceIds = row.ChoiceIds ?? Array.Empty<string>();
+                var choiceIds = row.ChoiceIds ?? [];
 
                 return choiceIds.Select(choiceId => new ProductChoiceIndex(row.Id, row.ParentId, choiceId));
             });

@@ -63,7 +63,13 @@
                 <div class="row mb-3 form-group">
                     <label class="form-label" asp-for="Product.HasOptions">
                         <input type="checkbox" asp-for="Product.HasOptions"
-                               class="check-box"/>@T["Has options like size and color"]
+                               class="check-box"/>@T["Add options like size and color?"]
+                    </label>
+                </div>
+                <div class="row mb-3 form-group">
+                    <label class="form-label" asp-for="Product.HasCustomerFields">
+                        <input type="checkbox" asp-for="Product.HasCustomerFields"
+                               class="check-box"/>@T["Add fields to enable further customization?"]
                     </label>
                 </div>
                 <div class="row mb-3 form-group">

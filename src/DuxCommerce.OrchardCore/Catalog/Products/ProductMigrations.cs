@@ -102,8 +102,8 @@ public class ProductMigrations(IContentDefinitionManager definitionManager) : Da
             .AlterIndexTableAsync<ProductChoiceIndex>(table => table
                 .CreateIndex(
                     $"IDX_{nameof(ProductChoiceIndex)}_{nameof(ProductChoiceIndex.ChoiceId)}_{nameof(ProductChoiceIndex.ParentId)}",
-                    nameof(ProductChoiceIndex.ChoiceId),
                     nameof(ProductChoiceIndex.ParentId),
+                    nameof(ProductChoiceIndex.ChoiceId),
                     nameof(ProductChoiceIndex.RowId))
             );
 
@@ -126,5 +126,13 @@ public class ProductMigrations(IContentDefinitionManager definitionManager) : Da
             );
 
         return 3;
+    }
+
+    public async Task<int> UpdateFrom3Async()
+    {
+        await SchemaBuilder.AlterIndexTableAsync<ProductIndex>(table => table
+            .AddColumn<int>(nameof(ProductIndex.HasCustomerFields), c => c.NotNull().WithDefault(0)));
+
+        return 4;
     }
 }

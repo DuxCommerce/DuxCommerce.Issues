@@ -17,7 +17,7 @@ public class CustomerFieldListIndexProvider : IndexProvider<CustomerFieldsPart>
         context.For<CustomerFieldsIndex>()
             .Map(x =>
             {
-                var row = (CustomerFieldsRow)x.Row;
+                var row = x.Row;
 
                 return new CustomerFieldsIndex(row.Id, row.ProductId);
             });
