@@ -80,4 +80,9 @@ public class AdminProductController(
 
         return RedirectToAction(nameof(LinkOptions), new { model.ProductId });
     }
+
+    public IActionResult LinkCustomerField()
+    {
+        throw new System.NotImplementedException();
+    }
 }

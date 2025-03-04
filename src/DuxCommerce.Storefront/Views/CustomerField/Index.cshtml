@@ -9,13 +9,13 @@
 <h1>@T["Edit Product"] - @Model.Product.Name</h1>
 @await Html.PartialAsync("_ProductLinks", Model.Links)
 <div class="d-flex flex-row-reverse">
-    <a asp-action="LinkOptions" asp-controller="AdminProduct" asp-route-productId="@Model.Product.Id" class="btn btn-primary"
+    <a asp-action="LinkCustomerField" asp-controller="AdminProduct" asp-route-productId="@Model.Product.Id" class="btn btn-primary"
        role="button">
-        @T["Add Shared Options"]
+        @T["Add Shared Fields"]
     </a>
     <a asp-action="Create" asp-route-productId="@Model.Product.Id" class="btn btn-primary"
        role="button">
-        @T["Add Option"]
+        @T["Add Field"]
     </a>
 </div>
 <div class="row mb-5">
@@ -23,9 +23,9 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>@T["Option Name"]</th>
+                <th>@T["Field Name"]</th>
                 <th>@T["Display Name"]</th>
-                <th>@T["Display Type"]</th>
+                <th>@T["Field Type"]</th>
                 <th>@T["Display Order"]</th>
                 <th>@T["Choices"]</th>
                 <th>

@@ -24,4 +24,15 @@ public class CustomerFieldController(
 
         return View(model);
     }
+
+    [Route(nameof(Create))]
+    public async Task<IActionResult> Create(string productId)
+    {
+        if (!await authorizationService.AuthorizeAsync(User, PermissionProvider.ManageProducts))
+            return Forbid();
+
+        var model = customerFieldsBuilder.BuildCreateModel(productId);
+
+        return View(model);
+    }
 }
