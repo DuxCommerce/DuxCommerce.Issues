@@ -33,21 +33,6 @@ public class ProductOptionsVmBuilder(
             Links = new ProductLinksVm { ContentItem = productItem, OptionsLink = true }
         };
     }
-
-    private async Task<IEnumerable<OptionVm>> GetAllOptions(string productId)
-    {
-        var productOptions = await productOptionsStore.GetByProductId(productId);
-        var sharedOptions = await productOptionsUseCases.GetSharedOptions(productOptions);
-
-        var sharedOptionVms = ProductOptionsCore.getSharedOptions(productOptions, sharedOptions)
-            .Select(x => new OptionVm { Option = x, Shared = true });
-
-        var privateOptionVms = productOptions.PrivateOptions
-            .Select(x => new OptionVm { Option = x });
-
-        return sharedOptionVms.Concat(privateOptionVms).OrderBy(x => x.Option.DisplayOrder);
-    }
-
     public PrivateOptionVm BuildCreateModel(string productId)
     {
         return new PrivateOptionVm
@@ -119,6 +104,20 @@ public class ProductOptionsVmBuilder(
         };
 
         return new PrivateOptionChoiceVm { ProductId = productId, Choice = choiceModel };
+    }
+    
+    private async Task<IEnumerable<OptionVm>> GetAllOptions(string productId)
+    {
+        var productOptions = await productOptionsStore.GetByProductId(productId);
+        var sharedOptions = await productOptionsUseCases.GetSharedOptions(productOptions);
+
+        var sharedOptionVms = ProductOptionsCore.getSharedOptions(productOptions, sharedOptions)
+            .Select(x => new OptionVm { Option = x, Shared = true });
+
+        var privateOptionVms = productOptions.PrivateOptions
+            .Select(x => new OptionVm { Option = x });
+
+        return sharedOptionVms.Concat(privateOptionVms).OrderBy(x => x.Option.DisplayOrder);
     }
 
     private OptionModel ToOptionModel(OptionRow option)

@@ -23,6 +23,12 @@
                     <a class="nav-link @Display(Model.OptionsLink)" asp-action="Index" asp-controller="ProductOption" asp-route-productId="@product.Id" asp-area="@Constants.AreaName">@T["Options"]</a>
                 </li>
             }
+            @if (product.HasCustomerFields)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Display(Model.FieldsLink)" asp-action="Index" asp-controller="CustomerField" asp-route-productId="@product.Id" asp-area="@Constants.AreaName">@T["Fields"]</a>
+                </li>
+            }
         </ul>
     }
 }

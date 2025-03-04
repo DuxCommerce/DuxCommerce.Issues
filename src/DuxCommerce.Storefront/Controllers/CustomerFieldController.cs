@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using DuxCommerce.OrchardCore;
-using DuxCommerce.Storefront.Views.ProductField.VmBuilders;
+using DuxCommerce.Storefront.Views.CustomerField.VmBuilders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrchardCore.Admin;
@@ -8,9 +8,9 @@ using OrchardCore.Admin;
 namespace DuxCommerce.Storefront.Controllers;
 
 [Admin]
-[Route("Admin/ProductField")]
-public class ProductFieldController(
-    ProductFieldBuilder productFieldBuilder,
+[Route("Admin/CustomerField")]
+public class CustomerFieldController(
+    CustomerFieldsBuilder customerFieldsBuilder,
     IAuthorizationService authorizationService)
     : Controller
 {
@@ -20,7 +20,7 @@ public class ProductFieldController(
         if (!await authorizationService.AuthorizeAsync(User, PermissionProvider.ManageProducts))
             return Forbid();
 
-        var model = await productFieldBuilder.BuildIndexModel(productId);
+        var model = await customerFieldsBuilder.BuildIndexModel(productId);
 
         return View(model);
     }

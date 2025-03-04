@@ -16,6 +16,7 @@ using DuxCommerce.Storefront.Views.Category.VmBuilders;
 using DuxCommerce.Storefront.Views.Checkout.VmBuilders;
 using DuxCommerce.Storefront.Views.Coupon.VmBuilders;
 using DuxCommerce.Storefront.Views.Currency.VmBuilders;
+using DuxCommerce.Storefront.Views.CustomerField.VmBuilders;
 using DuxCommerce.Storefront.Views.Inventory.VmBuilders;
 using DuxCommerce.Storefront.Views.LinkedOption.VmBuilders;
 using DuxCommerce.Storefront.Views.PaymentMethod.VmBuilders;
@@ -82,6 +83,7 @@ public class Startup : StartupBase
         services.AddScoped<ProductPartVmBuilder>();
         services.AddScoped<SharedOptionVmBuilder>();
         services.AddScoped<ProductOptionsVmBuilder>();
+        services.AddScoped<CustomerFieldsBuilder>();
         services.AddScoped<LinkedOptionVmBuilder>();
         services.AddScoped<ProductVariantsVmBuilder>();
         services.AddScoped<InventoryVmBuilder>();
