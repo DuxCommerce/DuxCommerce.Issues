@@ -3,6 +3,7 @@ using DuxCommerce.OrchardCore;
 using DuxCommerce.StoreBuilder.Catalog.Requests;
 using DuxCommerce.StoreBuilder.Catalog.UseCases;
 using DuxCommerce.StoreBuilder.Workflows;
+using DuxCommerce.Storefront.Views.CustomerField.ViewModels;
 using DuxCommerce.Storefront.Views.Shared.ViewModels;
 using DuxCommerce.Storefront.Views.SharedOption.ViewModels;
 using DuxCommerce.Storefront.Views.SharedOption.VmBuilders;

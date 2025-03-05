@@ -6,6 +6,7 @@ using DuxCommerce.StoreBuilder.Catalog.DataTypes;
 using DuxCommerce.StoreBuilder.Catalog.Requests;
 using DuxCommerce.StoreBuilder.Settings.UseCases;
 using DuxCommerce.Storefront.Services;
+using DuxCommerce.Storefront.Views.CustomerField.ViewModels;
 using DuxCommerce.Storefront.Views.ProductOption.ViewModels;
 using DuxCommerce.Storefront.Views.Shared.ViewModels;
 using DuxCommerce.Storefront.Views.SharedOption.ViewModels;

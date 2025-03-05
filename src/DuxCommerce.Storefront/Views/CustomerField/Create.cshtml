@@ -1,18 +1,15 @@
 ﻿@model DuxCommerce.Storefront.Views.CustomerField.ViewModels.PrivateFieldVm
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<h1>@T["Add Field"]</h1>
+<form asp-action="Create" asp-route-productId="@Model.ProductId" method="post" enctype="multipart/form-data">
+    <input asp-for="ProductId" type="hidden"/>
+    @await Html.PartialAsync("_Field", Model)
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Index" asp-route-productId="@Model.ProductId" class="btn btn-secondary">@T["Cancel"]</a>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">@T["Save"]</button>
+        </div>
+    </div>
+</form>

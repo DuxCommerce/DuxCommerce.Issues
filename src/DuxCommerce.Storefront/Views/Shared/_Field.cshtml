@@ -1,0 +1,45 @@
+﻿@using DuxCommerce.Storefront.Views.CustomerField.ViewModels
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model DuxCommerce.Storefront.Views.Shared.ViewModels.SharedFieldVm
+
+<div asp-validation-summary="ModelOnly"></div>
+<input asp-for="Field.FieldId" type="hidden"/>
+<div class="row mb-3 form-group">
+    <div class="col-md-3">
+        <label class="form-label float-end" asp-for="Field.FieldName">@T["Field Name"]</label>
+    </div>
+    <div class="col-md-9">
+        <input asp-for="Field.FieldName" class="form-control" required/>
+        <span asp-validation-for="Field.FieldName"></span>
+    </div>
+</div>
+<div class="row mb-3 form-group">
+    <div class="col-md-3">
+        <label class="form-label float-end" asp-for="Field.DisplayName">@T["Display Name"]</label>
+    </div>
+    <div class="col-md-9">
+        <input asp-for="Field.DisplayName" class="form-control" required/>
+        <span asp-validation-for="Field.DisplayName"></span>
+    </div>
+</div>
+<div class="row mb-3 form-group">
+    <div class="col-md-3">
+        <label class="form-label float-end" asp-for="Field.FieldType">@T["Field Type"]</label>
+    </div>
+    <div class="col-md-9">
+        <select asp-for="Field.FieldType" asp-items="Model.FieldTypes" class="form-control"></select>
+        <span asp-validation-for="Field.FieldType"></span>
+    </div>
+</div>
+@if (Model is PrivateFieldVm)
+{
+    <div class="row mb-3 form-group">
+        <div class="col-md-3">
+            <label class="form-label float-end" asp-for="Field.DisplayOrder">@T["Display Order"]</label>
+        </div>
+        <div class="col-md-9">
+            <input asp-for="Field.DisplayOrder" class="form-control" type="number" min="0" required/>
+            <span asp-validation-for="Field.DisplayOrder"></span>
+        </div>
+    </div>
+}

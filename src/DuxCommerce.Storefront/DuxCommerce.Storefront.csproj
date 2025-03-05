@@ -25,6 +25,7 @@
     
     <ItemGroup>
       <Content Include="Views\CustomerField\Create.cshtml" />
+      <Content Include="Views\Shared\_Field.cshtml" />
     </ItemGroup>
   
     <Target Name="CopyAssets" AfterTargets="Build">
