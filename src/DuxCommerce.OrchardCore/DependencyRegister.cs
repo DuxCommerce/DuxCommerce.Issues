@@ -189,8 +189,8 @@ public static class DependencyRegister
         services.AddScoped<SharedOptionUseCases>();
         services.AddScoped<ProductOptionsUseCases>();
         services.AddScoped<BulkDiscountUseCases>();
-        services.AddScoped<CustomerFieldUseCases>();
-        services.AddScoped<MerchantFieldUseCases>();
+        services.AddScoped<CustomerFieldsUseCases>();
+        services.AddScoped<MerchantFieldsUseCases>();
         services.AddScoped<CategoryHomeUseCases>();
         services.AddScoped<ProductHomeUseCases>();
 

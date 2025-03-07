@@ -26,7 +26,7 @@ public class CustomerFieldsStore(ISession session, IIdGenerator generator)
         return await base.Get<CustomerFieldsPart, CustomerFieldsRow, CustomerFieldsIndex>(id);    
     }
 
-    public async Task<CustomerFieldsRow> GetFieldList(string productId)
+    public async Task<CustomerFieldsRow> GetByProductId(string productId)
     {
         var part = await Session
             .Query<CustomerFieldsPart, CustomerFieldsIndex>(index => index.ProductId == productId)
@@ -35,10 +35,10 @@ public class CustomerFieldsStore(ISession session, IIdGenerator generator)
         if (part == null)
             return CustomerFieldsDto.create(productId);
 
-        return (CustomerFieldsRow)part.Row;
+        return part.Row;
     }
 
-    public async Task<IEnumerable<CustomerFieldsRow>> GetFieldLists(IEnumerable<string> productIds)
+    public async Task<IEnumerable<CustomerFieldsRow>> GetByProductIds(IEnumerable<string> productIds)
     {
         var parts = await Session
             .Query<CustomerFieldsPart, CustomerFieldsIndex>(index => index.ProductId.IsIn(productIds))

@@ -32,4 +32,16 @@ public class CustomerFieldsBuilder(IProductStore productStore)
             FieldTypes = FieldType.GetAll()
         };
     }
+
+    public PrivateFieldVm BuildCreateModel(PrivateFieldVm model)
+    {
+        model.FieldTypes = FieldType.GetAll();
+
+        return model;
+    }
+
+    public async Task<string> BuildEditModel(string productId, string fieldId)
+    {
+        throw new System.NotImplementedException();
+    }
 }
