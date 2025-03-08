@@ -63,19 +63,9 @@ public class ProductOptionsStore(ISession session, IIdGenerator generator)
     private void PopulateIdsIf(ProductOptionsRow row)
     {
         var options = row.PrivateOptions.Where(x => string.IsNullOrEmpty(x.Id));
-
-        foreach (var option in options)
-        {
-            if (string.IsNullOrEmpty(option.Id) )
-                option.Id = IdGenerator.GenerateUniqueId();
-        }
+        options.UpdateId(IdGenerator);
 
         var choices = row.PrivateOptions.SelectMany(x => x.Choices);
-
-        foreach (var choice in choices)
-        {
-            if (string.IsNullOrEmpty(choice.Id))
-                choice.Id = IdGenerator.GenerateUniqueId();
-        }
+        choices.UpdateId(IdGenerator);
     }
 }

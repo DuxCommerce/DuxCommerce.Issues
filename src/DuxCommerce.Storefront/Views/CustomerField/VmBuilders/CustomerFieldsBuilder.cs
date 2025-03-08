@@ -4,7 +4,6 @@ using DuxCommerce.StoreBuilder.Catalog.DataStores;
 using DuxCommerce.StoreBuilder.Catalog.Requests;
 using DuxCommerce.Storefront.Views.AdminProduct.ViewModels;
 using DuxCommerce.Storefront.Views.CustomerField.ViewModels;
-using DuxCommerce.Storefront.Views.ProductOption.ViewModels;
 using OrchardCore.ContentManagement;
 
 namespace DuxCommerce.Storefront.Views.CustomerField.VmBuilders;

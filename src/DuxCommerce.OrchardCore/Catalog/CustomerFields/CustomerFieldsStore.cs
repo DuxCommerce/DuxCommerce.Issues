@@ -13,6 +13,8 @@ public class CustomerFieldsStore(ISession session, IIdGenerator generator)
 {
     public async Task<string> CreateOrUpdate(CustomerFieldsRow row)
     {
+        PopulateIdsIf(row);
+        
         if (string.IsNullOrEmpty(row.Id))
             return await Create<CustomerFieldsPart, CustomerFieldsRow>(row);
 
@@ -45,5 +47,17 @@ public class CustomerFieldsStore(ISession session, IIdGenerator generator)
             .ListAsync();
 
         return parts.Select(x => x.Row);
+    }
+
+    private void PopulateIdsIf(CustomerFieldsRow row)
+    {
+        var fields = row.PrivateFields.Where(x => string.IsNullOrEmpty(x.Id));
+        fields.UpdateId(IdGenerator);
+
+        var dropdownChoices = row.PrivateFields.Select(x => x.DropDownList).Where(x => x != null);
+        dropdownChoices.UpdateId(IdGenerator);
+
+        var radioChoices = row.PrivateFields.Select(x => x.RadioGroup).Where(x => x != null);
+        radioChoices.UpdateId(IdGenerator);
     }
 }
