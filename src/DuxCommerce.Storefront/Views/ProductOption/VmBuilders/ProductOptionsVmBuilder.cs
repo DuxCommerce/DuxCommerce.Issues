@@ -58,7 +58,7 @@ public class ProductOptionsVmBuilder(
         var optionsRow = await productOptionsStore.GetByProductId(productId);
         var option = optionsRow.PrivateOptions.Single(x => x.Id == optionId);
 
-        var choices = (option.Choices ?? Array.Empty<ChoiceRow>())
+        var choices = (option.Choices ?? [])
             .OrderBy(x => x.DisplayOrder)
             .ThenBy(x => x.CreatedAtUtc);
 

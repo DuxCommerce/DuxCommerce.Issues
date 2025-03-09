@@ -1,6 +1,8 @@
+using System.Linq;
 using System.Threading.Tasks;
 using DuxCommerce.OrchardCore.Catalog.Products;
 using DuxCommerce.StoreBuilder.Catalog.DataStores;
+using DuxCommerce.StoreBuilder.Catalog.DataTypes;
 using DuxCommerce.StoreBuilder.Catalog.Requests;
 using DuxCommerce.Storefront.Views.AdminProduct.ViewModels;
 using DuxCommerce.Storefront.Views.CustomerField.ViewModels;
@@ -8,7 +10,7 @@ using OrchardCore.ContentManagement;
 
 namespace DuxCommerce.Storefront.Views.CustomerField.VmBuilders;
 
-public class CustomerFieldsBuilder(IProductStore productStore)
+public class CustomerFieldsBuilder(IProductStore productStore, ICustomerFieldsStore customerFieldsStore)
 {
     public async Task<CustomerFieldsVm> BuildIndexModel(string productId)
     {
@@ -39,8 +41,39 @@ public class CustomerFieldsBuilder(IProductStore productStore)
         return model;
     }
 
-    public async Task<string> BuildEditModel(string productId, string fieldId)
+    public async Task<OptionFieldVm> BuildOptionModel(string productId, string fieldId)
+    {
+        var fieldsRow = await customerFieldsStore.GetByProductId(productId);
+        var fieldRow = fieldsRow.PrivateFields.Single(x => x.Id == fieldId);
+        
+        var choices = (fieldRow.DropDownList?.Choices ?? fieldRow.RadioGroup?.Choices ?? [])
+            .OrderBy(x => x.DisplayOrder)
+            .ThenBy(x => x.CreatedAtUtc);
+
+        return new OptionFieldVm
+        {
+            ProductId = fieldsRow.ProductId,
+            Field = ToFieldModel(fieldRow),
+            Choices = choices,
+            FieldTypes = FieldType.GetAll()
+        };
+    }
+
+    public async Task<PrivateFieldVm> BuildEditModel(string productId, string fieldId)
     {
         throw new System.NotImplementedException();
+    }
+
+    private FieldModel ToFieldModel(CustomFieldRow fieldRow)
+    {
+        return new FieldModel
+        {
+            FieldId = fieldRow.Id,
+            FieldName = fieldRow.FieldName,
+            DisplayName = fieldRow.DisplayName,
+            FieldType = fieldRow.FieldType,
+            IsRequired = fieldRow.IsRequired,
+            DisplayOrder = fieldRow.DisplayOrder
+        };
     }
 }

@@ -59,7 +59,7 @@ public class CustomerFieldController(
             if (result.Succeeded)
             {
                 await notifier.SuccessAsync(_h["Customer field created successfully"]);
-                return RedirectToAction(nameof(Edit), new { productId, FieldId = result.Result.Id });
+                return RedirectToAction(nameof(OptionField), new { productId, FieldId = result.Result.Id });
             }
 
             ModelState.AddModelError(string.Empty, result.Error.ToMessage());
@@ -68,6 +68,17 @@ public class CustomerFieldController(
         var vm = customerFieldsBuilder.BuildCreateModel(model);
 
         return View(vm);
+    }
+
+    [Route(nameof(OptionField))]
+    public async Task<IActionResult> OptionField(string productId, string fieldId)
+    {
+        if (!await authorizationService.AuthorizeAsync(User, PermissionProvider.ManageProducts))
+            return Forbid();
+
+        var model = await customerFieldsBuilder.BuildOptionModel(productId, fieldId);
+
+        return View(model);
     }
 
     [Route(nameof(Edit))]

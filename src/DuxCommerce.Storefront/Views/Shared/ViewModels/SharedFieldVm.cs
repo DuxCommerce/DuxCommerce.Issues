@@ -9,5 +9,5 @@ public class SharedFieldVm
 {
     public FieldLinks Links { get; set; }
     public FieldModel Field { get; set; }
-    public IEnumerable<SelectListItem> FieldTypes { get; set; }    
+    public IEnumerable<SelectListItem> FieldTypes { get; set; }
 }
