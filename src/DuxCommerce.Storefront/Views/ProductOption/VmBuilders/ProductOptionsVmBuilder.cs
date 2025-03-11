@@ -39,13 +39,13 @@ public class ProductOptionsVmBuilder(
             ProductId = productId,
             Option = new OptionModel(),
             Choices = new List<ChoiceRow>(),
-            DisplayTypes = OptionDisplayType.GetAll()
+            DisplayTypes = DisplayType.GetAll()
         };
     }
 
     public PrivateOptionVm BuildCreateModel(PrivateOptionVm model)
     {
-        var types = OptionDisplayType.GetAll();
+        var types = DisplayType.GetAll();
 
         model.DisplayTypes = types;
 
@@ -66,7 +66,7 @@ public class ProductOptionsVmBuilder(
             ProductId = optionsRow.ProductId,
             Option = ToOptionModel(option),
             Choices = choices,
-            DisplayTypes = OptionDisplayType.GetAll()
+            DisplayTypes = DisplayType.GetAll()
         };
     }
 
@@ -81,7 +81,7 @@ public class ProductOptionsVmBuilder(
 
         model.ProductId = model.ProductId;
         model.Choices = choices;
-        model.DisplayTypes = OptionDisplayType.GetAll();
+        model.DisplayTypes = DisplayType.GetAll();
 
         return model;
     }

@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DuxCommerce.OrchardCore.Catalog.Products;
 using DuxCommerce.StoreBuilder.Catalog.DataStores;
 using DuxCommerce.StoreBuilder.Catalog.DataTypes;
+using DuxCommerce.StoreBuilder.Catalog.DomainTypes;
 using DuxCommerce.StoreBuilder.Catalog.Requests;
 using DuxCommerce.Storefront.Views.AdminProduct.ViewModels;
 using DuxCommerce.Storefront.Views.CustomerField.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OrchardCore.ContentManagement;
 
 namespace DuxCommerce.Storefront.Views.CustomerField.VmBuilders;
@@ -30,13 +33,13 @@ public class CustomerFieldsBuilder(IProductStore productStore, ICustomerFieldsSt
         {
             ProductId = productId,
             Field = new FieldModel(),
-            FieldTypes = FieldType.GetAll()
+            FieldTypes = GetFieldTypes()
         };
     }
 
     public PrivateFieldVm BuildCreateModel(PrivateFieldVm model)
     {
-        model.FieldTypes = FieldType.GetAll();
+        model.FieldTypes = GetFieldTypes();
 
         return model;
     }
@@ -46,7 +49,7 @@ public class CustomerFieldsBuilder(IProductStore productStore, ICustomerFieldsSt
         var fieldsRow = await customerFieldsStore.GetByProductId(productId);
         var fieldRow = fieldsRow.PrivateFields.Single(x => x.Id == fieldId);
         
-        var choices = (fieldRow.Option.Choices ?? [])
+        var choices = (fieldRow.Option?.Choices ?? [])
             .OrderBy(x => x.DisplayOrder)
             .ThenBy(x => x.CreatedAtUtc);
 
@@ -55,7 +58,7 @@ public class CustomerFieldsBuilder(IProductStore productStore, ICustomerFieldsSt
             ProductId = fieldsRow.ProductId,
             Field = ToFieldModel(fieldRow),
             Choices = choices,
-            FieldTypes = FieldType.GetAll()
+            FieldTypes = GetFieldTypes()
         };
     }
 
@@ -74,6 +77,15 @@ public class CustomerFieldsBuilder(IProductStore productStore, ICustomerFieldsSt
             FieldType = fieldRow.FieldType,
             IsRequired = fieldRow.IsRequired,
             DisplayOrder = fieldRow.DisplayOrder
+        };
+    }    
+    
+    private IEnumerable<SelectListItem> GetFieldTypes()
+    {
+        return new List<SelectListItem>
+        {
+            new("Option Field", nameof(CustomField.OptionField)),
+            new("Checkbox Field", nameof(CustomField.CheckboxField)),
         };
     }
 }

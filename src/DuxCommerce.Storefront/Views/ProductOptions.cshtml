@@ -19,7 +19,7 @@
 
                     switch (option.DisplayType)
                     {
-                        case nameof(DisplayType.DropDownList):
+                        case nameof(OptionDisplayType.DropDownList):
                             <select name="@name" onchange="$('#customize').click();" required>
 
                                 @foreach (var choice in choices)
@@ -36,7 +36,7 @@
                             </select>
 
                             break;
-                        case nameof(DisplayType.RadioGroup):
+                        case nameof(OptionDisplayType.RadioGroup):
                             @foreach (var choice in choices)
                             {
                                 if (choice.IsDefault)

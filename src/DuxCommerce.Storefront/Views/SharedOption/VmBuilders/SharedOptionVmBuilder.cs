@@ -40,13 +40,13 @@ public class SharedOptionVmBuilder(
         {
             Option = new OptionModel(),
             Choices = new List<ChoiceRow>(),
-            DisplayTypes = OptionDisplayType.GetAll()
+            DisplayTypes = DisplayType.GetAll()
         };
     }
 
     public SharedOptionVm BuildCreateModel(SharedOptionVm model)
     {
-        var types = OptionDisplayType.GetAll();
+        var types = DisplayType.GetAll();
 
         model.DisplayTypes = types;
 
@@ -66,7 +66,7 @@ public class SharedOptionVmBuilder(
             Links = new OptionLinks { OptionId = optionId, OptionLink = true },
             Option = ToOptionModel(optionRow),
             Choices = choices,
-            DisplayTypes = OptionDisplayType.GetAll()
+            DisplayTypes = DisplayType.GetAll()
         };
     }
 
@@ -81,7 +81,7 @@ public class SharedOptionVmBuilder(
             .ThenBy(x => x.CreatedAtUtc);
 
         model.Choices = choices;
-        model.DisplayTypes = OptionDisplayType.GetAll();
+        model.DisplayTypes = DisplayType.GetAll();
 
         return model;
     }
