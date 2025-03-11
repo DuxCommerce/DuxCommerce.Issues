@@ -54,10 +54,7 @@ public class CustomerFieldsStore(ISession session, IIdGenerator generator)
         var fields = row.PrivateFields.Where(x => string.IsNullOrEmpty(x.Id));
         fields.UpdateId(IdGenerator);
 
-        var dropdownChoices = row.PrivateFields.Select(x => x.DropDownList).Where(x => x != null);
+        var dropdownChoices = row.PrivateFields.Select(x => x.Option).Where(x => x != null);
         dropdownChoices.UpdateId(IdGenerator);
-
-        var radioChoices = row.PrivateFields.Select(x => x.RadioGroup).Where(x => x != null);
-        radioChoices.UpdateId(IdGenerator);
     }
 }

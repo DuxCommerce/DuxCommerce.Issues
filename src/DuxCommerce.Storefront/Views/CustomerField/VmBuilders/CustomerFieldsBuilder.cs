@@ -46,7 +46,7 @@ public class CustomerFieldsBuilder(IProductStore productStore, ICustomerFieldsSt
         var fieldsRow = await customerFieldsStore.GetByProductId(productId);
         var fieldRow = fieldsRow.PrivateFields.Single(x => x.Id == fieldId);
         
-        var choices = (fieldRow.DropDownList?.Choices ?? fieldRow.RadioGroup?.Choices ?? [])
+        var choices = (fieldRow.Option.Choices ?? [])
             .OrderBy(x => x.DisplayOrder)
             .ThenBy(x => x.CreatedAtUtc);
 
