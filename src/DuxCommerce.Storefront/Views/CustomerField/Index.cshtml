@@ -27,7 +27,6 @@
                 <th>@T["Display Name"]</th>
                 <th>@T["Field Type"]</th>
                 <th>@T["Display Order"]</th>
-                <th>@T["Choices"]</th>
                 <th>
                 </th>
             </tr>
@@ -42,26 +41,26 @@
                     <td>@field.DisplayName</td>
                     <td>@field.FieldType</td>
                     <td>@field.DisplayOrder</td>
-                    @* <td class="text-end"> *@
-                    @*     @if (fieldVm.Shared) *@
-                    @*     { *@
-                    @*         <a asp-action="Edit" asp-controller="LinkedOption" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Edit"]"> *@
-                    @*             <i class="fas fa-pen-to-square small"></i> *@
-                    @*         </a> *@
-                    @*         <a asp-action="UnlinkOption" method="post" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Unlink"]" itemprop="RemoveUrl UnsafeUrl"> *@
-                    @*             <i class="fas fa-trash-alt small"></i> *@
-                    @*         </a> *@
-                    @*     } *@
-                    @*     else *@
-                    @*     { *@
-                    @*         <a asp-action="Edit" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Edit"]"> *@
-                    @*             <i class="fas fa-pen-to-square small"></i> *@
-                    @*         </a> *@
-                    @*         <a asp-action="Delete" method="post" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Delete"]" itemprop="RemoveUrl UnsafeUrl"> *@
-                    @*             <i class="fas fa-trash-alt small"></i> *@
-                    @*         </a> *@
-                    @*     } *@
-                    @* </td> *@
+                    <td class="text-end">
+                        @if (fieldVm.Shared)
+                        {
+                            <a asp-action="Edit" asp-controller="LinkedOption" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Edit"]">
+                                <i class="fas fa-pen-to-square small"></i>
+                            </a>
+                            <a asp-action="UnlinkOption" method="post" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Unlink"]" itemprop="RemoveUrl UnsafeUrl">
+                                <i class="fas fa-trash-alt small"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="Edit" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Edit"]">
+                                <i class="fas fa-pen-to-square small"></i>
+                            </a>
+                            <a asp-action="Delete" method="post" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Delete"]" itemprop="RemoveUrl UnsafeUrl">
+                                <i class="fas fa-trash-alt small"></i>
+                            </a>
+                        }
+                    </td>
                 </tr>
             }
             </tbody>
