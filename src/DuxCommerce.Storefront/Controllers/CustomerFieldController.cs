@@ -91,4 +91,18 @@ public class CustomerFieldController(
 
         return View(model);
     }
+
+    [HttpPost]
+    [Route(nameof(Delete))]
+    public async Task<IActionResult> Delete(string productId, string fieldId)
+    {
+        if (!await authorizationService.AuthorizeAsync(User, PermissionProvider.ManageProducts))
+            return Forbid();
+
+        await customerFieldsUseCases.DeletePrivateField(productId, fieldId);
+
+        await notifier.SuccessAsync(_h["Customer field deleted successfully"]);
+
+        return RedirectToAction(nameof(Index), new { productId });
+    }
 }
