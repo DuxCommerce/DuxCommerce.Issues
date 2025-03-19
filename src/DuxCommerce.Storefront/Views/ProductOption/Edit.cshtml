@@ -10,8 +10,7 @@
 }
 
 <h1>@T["Edit Option"]</h1>
-<form asp-action="Edit" asp-route-optionId="@Model.Option.OptionId" method="post" enctype="multipart/form-data">
-    <input asp-for="ProductId" type="hidden"/>
+<form asp-action="Edit" asp-route-productId="@Model.ProductId" method="post" enctype="multipart/form-data">
     @await Html.PartialAsync("_Option", Model)
     <div class="row mb-3 form-group">
         <div class="col-md-3">

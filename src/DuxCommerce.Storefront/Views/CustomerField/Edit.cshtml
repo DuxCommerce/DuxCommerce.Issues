@@ -1,0 +1,14 @@
+﻿@model DuxCommerce.Storefront.Views.CustomerField.ViewModels.PrivateFieldVm
+
+<h1>@T["Edit Field"]</h1>
+<form asp-action="Edit" asp-route-productId="@Model.ProductId" method="post" enctype="multipart/form-data">
+    @await Html.PartialAsync("_Field", Model)
+    <div class="d-flex justify-content-between">
+        <div>
+            <a asp-action="Index" asp-route-productId="@Model.ProductId" class="btn btn-secondary">@T["Cancel"]</a>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">@T["Save"]</button>
+        </div>
+    </div>
+</form>

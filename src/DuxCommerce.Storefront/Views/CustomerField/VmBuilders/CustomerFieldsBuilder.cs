@@ -87,7 +87,15 @@ public class CustomerFieldsBuilder(
 
     public async Task<PrivateFieldVm> BuildEditModel(string productId, string fieldId)
     {
-        throw new System.NotImplementedException();
+        var fieldsRow = await customerFieldsStore.GetByProductId(productId);
+        var option = fieldsRow.PrivateFields.Single(x => x.Id == fieldId);
+
+        return new PrivateFieldVm
+        {
+            ProductId = fieldsRow.ProductId,
+            Field = ToFieldModel(option),
+            FieldTypes = GetFieldTypes()
+        };
     }
 
     private FieldModel ToFieldModel(CustomFieldRow fieldRow)

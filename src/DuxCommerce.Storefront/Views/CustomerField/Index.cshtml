@@ -53,7 +53,7 @@
                         }
                         else
                         {
-                            <a asp-action="Edit" asp-route-productId="@Model.Product.Id" asp-route-optionId="@field.Id" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Edit"]">
+                            <a asp-action="Edit" asp-route-productId="@Model.Product.Id" asp-route-fieldId="@field.Id" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Edit"]">
                                 <i class="fas fa-pen-to-square small"></i>
                             </a>
                             <a asp-action="Delete" method="post" asp-route-productId="@Model.Product.Id" asp-route-fieldId="@field.Id" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="@T["Delete"]" itemprop="RemoveUrl UnsafeUrl">
