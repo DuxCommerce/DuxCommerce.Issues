@@ -70,6 +70,19 @@ public class CustomerFieldsBuilder(
         };
     }
 
+    public async Task<PrivateFieldVm> BuildEditModel(string productId, string fieldId)
+    {
+        var fieldsRow = await customerFieldsStore.GetByProductId(productId);
+        var option = fieldsRow.PrivateFields.Single(x => x.Id == fieldId);
+
+        return new PrivateFieldVm
+        {
+            ProductId = fieldsRow.ProductId,
+            Field = ToFieldModel(option),
+            FieldTypes = GetFieldTypes()
+        };
+    }
+
     private async Task<IEnumerable<CustomerFieldVm>> GetAllFields(string productId)
     {
         var customerFields = await customerFieldsStore.GetByProductId(productId);
@@ -83,19 +96,6 @@ public class CustomerFieldsBuilder(
             .Select(x => new CustomerFieldVm { Field = x });
 
         return sharedFieldsVms.Concat(privateFieldVms).OrderBy(x => x.Field.DisplayOrder);        
-    }
-
-    public async Task<PrivateFieldVm> BuildEditModel(string productId, string fieldId)
-    {
-        var fieldsRow = await customerFieldsStore.GetByProductId(productId);
-        var option = fieldsRow.PrivateFields.Single(x => x.Id == fieldId);
-
-        return new PrivateFieldVm
-        {
-            ProductId = fieldsRow.ProductId,
-            Field = ToFieldModel(option),
-            FieldTypes = GetFieldTypes()
-        };
     }
 
     private FieldModel ToFieldModel(CustomFieldRow fieldRow)
